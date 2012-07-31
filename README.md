@@ -74,12 +74,16 @@ edit_user_profile:                       ()[:].?[:].?[:]==[:].=[:]..=.==[:].=[:]
 following_url?:                          ()=.(:=>).?.?(://#{.}/)=[/\/\/(.+)$/,]=[.(:=>)].?!(&).?!
 send_unfollow_notification:              ()=.:=>=::.(.,..)=..=.(..)=::.(.,.)=.(.,,{-=>/-+})
 send_follow_notification:                ()=.:=>=::.(.,..)=..=.(..)=::.(.,.)=.(.,,{-=>/-+})
+
 [...]
 ```
 
-For instance, look at these two signatures from app/models/discussion_list.rb:
+Look at these two signatures from app/models/discussion_list.rb:
+
+```
 send_unfollow_notification:              ()=.:=>=::.(.,..)=..=.(..)=::.(.,.)=.(.,,{-=>/-+})
 send_follow_notification:                ()=.:=>=::.(.,..)=..=.(..)=::.(.,.)=.(.,,{-=>/-+})
+```
 
 There's clearly something similar about them. Here's the source:
 
@@ -115,14 +119,15 @@ There's clearly something similar about them. Here's the source:
   end
 ```
 
-There's clearly some kind of duplication there, and these methods
-aren't right next to each other in the source.
+Definitely some kind of duplication there, and these methods aren't
+right next to each other in the source.
 
 And it helps us find really long methods, like these bad boys:
 
+```
 app/models/update.rb
 generate_html:              =.().!(/([]?:\/\/\+[---\/}])/,<=\\>\\</>).!()||$=.(:=>/^#{$}$/,:=>/^#{$}$/)=..?(/)=://#{.}#{}#{$}<=#{}>@#{$}@#{$}</>$=.(:=>/^#{$}$/)=..?(/)=://#{.}#{}#{$}<=#{}>@#{$}</>.!(/(^|\+)#(\+)/)||#{$}<=/?=%#{$}>##{$}</>.=
-
+```
 
 ## TODOS
 
